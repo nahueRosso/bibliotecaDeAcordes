@@ -115,14 +115,19 @@ const triada2 = biblioteca.filter(x => x.nota2 === acorde[2] );
 
 const triada3 = triada2.filter(y => y.nota3 === acorde[3] );
 
-const principal = nota.filter(z => z.number === acorde[0]) 
+let tonica = (triada3[0].fundamental - 1) + acorde[0] 
+
+     if(tonica > 13){ tonica = tonica - 12 }
+
+const principal = nota.filter(z => z.number === tonica) 
  
 let printMay = principal[0].cifAme
 
 return  printMay.toUpperCase() + triada3[0].nombre
 }
 
+let acorde = triada(convertidor("si"),convertidor("reb"),convertidor("mi"))
 
-let acorde = triada(convertidor(prompt("tonica")),convertidor(prompt("Segunda nota")),convertidor(prompt("Tercera nota")))
+// let acorde = triada(convertidor(prompt("tonica")),convertidor(prompt("Segunda nota")),convertidor(prompt("Tercera nota")))
 
 console.log(detector(acorde));
